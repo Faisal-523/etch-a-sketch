@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Etch A Sketch</title>
+        <link rel="stylesheet" href="style.css">
+        <link href='https://fonts.googleapis.com/css?family=Cabin Sketch' rel='stylesheet'>
+        <body>
+
+            <div class="container">
+                <div class="title">ETCH - A - SKETCH</div>
+                <div id= "etch-grid" class="main-area"></div>
+                <div class="button-area">
+                    <button id="16" class="siz">16x16</button>
+                    <button id="32" class="siz">32x32</button>
+                    <button id="64" class="siz">64x64</button>
+                    <button class="clear">CLEAR</button>
+                </div>
+            </div>
+            <script>
+                function SetColumns(dim){
+                    let str = '';
+                    for(let i=0;i<dim;i++)
+                    {
+                        str+= "auto ";
+                    }
+                    grid.style.gridTemplateColumns = str;
+                }
+
+                function CreateGrid(dim)
+                {
+                    for(let i=0; i<dim*dim; i++)
+                    {
+                    let n1 = document.createElement('div');
+                    n1.style.backgroundColor = "#D3D3D3";
+                    n1.classList.add('block');
+                    n1.setAttribute('id',`${i}`);
+                    grid.appendChild(n1);
+                    }
+                }
+
+                function EnableGrid(block)
+                {
+                    let id = document.getElementById(`${block.id}`);
+                    id.addEventListener('mouseenter', function(e){
+                        id.style.backgroundColor = "black";
+                    })
+                }
+
+                function ClearGrid()
+                {
+                    let blocks = document.querySelectorAll(".block");
+                    console.log(btn_clear);
+                    blocks.forEach((block) => {
+                        let id = document.getElementById(`${block.id}`);
+                        id.style.backgroundColor = "#D3D3D3";
+                    });
+                }
+
+                function ClearColumns()
+                {
+                    while(grid.firstChild)
+                    {
+                        grid.removeChild(grid.firstChild);
+                    }
+                }
+
+                function StartGame()
+                {
+                    let blocks = document.querySelectorAll(".block");
+                    let block_id;
+                    blocks.forEach((block) => EnableGrid(block));
+
+                }
+
+
+                const grid = document.getElementById("etch-grid");
+                const btn_clear = document.querySelector(".clear");
+                const btn_dim = document.querySelectorAll(".siz");
+
+
+                let dim = 16;
+                SetColumns(dim);
+                CreateGrid(dim);
+                StartGame();
+
+                btn_clear.addEventListener('click',ClearGrid);
+
+                btn_dim.forEach((button) => button.addEventListener('click', function(e){
+                if(dim != button.id)
+                {  
+                    dim = button.id;
+                    ClearColumns();
+                    SetColumns(dim);
+                    CreateGrid(dim);
+                    StartGame();
+                }
+                else{
+                    ClearGrid();
+                }
+
+}))
+
+
+            </script>
+        </body>
+    </head>
+</html>
