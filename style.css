@@ -29,7 +29,10 @@
         padding:20px;
         border:5px solid black;
         background-color: dodgerblue;
+        display: grid;
+        grid-template-columns: auto auto auto;
     }
+
     .siz{
         background-color: yellow;
         border: 5px solid black;
@@ -49,3 +52,28 @@
         font-weight: bold;
         border-radius: 10px;
     }
+
+.slidecontainer {
+        width: 80%;
+        padding-top:20px;
+      }
+
+.slider{
+    -webkit-appearance: none;
+    width: 100%; /* Full-width */
+    height:4px;
+    background:#000;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    border-radius: 50%;
+    background: #000; /* Green background */
+}
+    
+
+
+      
+

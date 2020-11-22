@@ -11,9 +11,10 @@
                 <div class="title">ETCH - A - SKETCH</div>
                 <div id= "etch-grid" class="main-area"></div>
                 <div class="button-area">
-                    <button id="16" class="siz">16x16</button>
-                    <button id="32" class="siz">32x32</button>
-                    <button id="64" class="siz">64x64</button>
+                    <div class="slidecontainer">
+                    <input type="range" min="4" max="64" value="34" class="slider" id="myRange">
+                    </div>
+                    <button id="set" class="siz">SET</button>
                     <button class="clear">CLEAR</button>
                 </div>
             </div>
@@ -76,7 +77,8 @@
 
                 const grid = document.getElementById("etch-grid");
                 const btn_clear = document.querySelector(".clear");
-                const btn_dim = document.querySelectorAll(".siz");
+                const btn_dim = document.getElementById("set");
+                const range = document.getElementById("myRange");
 
 
                 let dim = 16;
@@ -86,20 +88,20 @@
 
                 btn_clear.addEventListener('click',ClearGrid);
 
-                btn_dim.forEach((button) => button.addEventListener('click', function(e){
-                if(dim != button.id)
-                {  
-                    dim = button.id;
-                    ClearColumns();
-                    SetColumns(dim);
-                    CreateGrid(dim);
-                    StartGame();
-                }
-                else{
-                    ClearGrid();
-                }
-
-}))
+                btn_dim.addEventListener('click', function(e){
+                    console.log(range.value)
+                    if(dim != range.value)
+                    {
+                        dim = range.value;
+                        ClearColumns();
+                        SetColumns(dim);
+                        CreateGrid(dim);
+                        StartGame();
+                    }
+                        else{
+                        ClearGrid();
+                        }
+                })
 
 
             </script>
